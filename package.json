@@ -1,6 +1,6 @@
 {
   "name": "h5emitter",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "event emitter function",
   "repository": {
     "type": "git",
@@ -12,9 +12,6 @@
     "mocha": "mocha",
     "test": "istanbul cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec",
     "lint": "jshint h5emitter.js"
-  },
-  "bin": {
-    "h5emitter": "cli.js"
   },
   "keywords": [
     "event",

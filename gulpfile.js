@@ -23,11 +23,6 @@ gulp.task('jdists', function () {
     .pipe(jdists())
     .pipe(rename('h5emitter.js'))
     .pipe(gulp.dest('./'))
-
-  gulp.src('./src/compiler.jdists.js')
-    .pipe(jdists())
-    .pipe(rename('compiler.js'))
-    .pipe(gulp.dest('./lib/'))
 })
 
 gulp.task('uglify', function () {

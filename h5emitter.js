@@ -1,6 +1,16 @@
 (function (exportName) {
   /*<function name="createEmitter">*/
 /**
+ * @file h5emitter
+ * @url https://github.com/zswang/h5emitter.git
+ * event emitter function
+ * @author
+ *   zswang (http://weibo.com/zswang)
+ * @version 0.0.8
+ * @date 2017-05-08
+ * @license MIT
+ */
+/**
  * 创建事件对象
  '''<example>'''
  * @example base

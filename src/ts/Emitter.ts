@@ -11,6 +11,28 @@ interface EventHandler {
 }
 
 /*<function name="createEmitter">*/
+/*<jdists encoding="ejs" data="../../package.json">*/
+/**
+ * @file <%- name %>
+ <% if (typeof repository != 'undefined') { %>
+ * @url <%- repository.url %>
+ <% } %>
+ * <%- description %>
+ * @author
+     <% (author instanceof Array ? author : [author]).forEach(function (item) { %>
+ *   <%- item.name %> (<%- item.url %>)
+     <% }); %>
+ * @version <%- version %>
+     <% var now = new Date() %>
+ * @date <%- [
+      now.getFullYear(),
+      now.getMonth() + 101,
+      now.getDate() + 100
+    ].join('-').replace(/-1/g, '-') %>
+ * @license <%- license %>
+ */
+/*</jdists>*/
+
 /**
  * 创建事件对象
  '''<example>'''
