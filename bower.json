@@ -1,0 +1,23 @@
+{
+  "name": "h5emitter",
+  "description": "event emitter function",
+  "keywords": [
+    "event",
+    "emitter"
+  ],
+  "version": "0.0.5",
+  "author": {
+    "name": "zswang",
+    "url": "http://weibo.com/zswang"
+  },
+  "ignore": [
+    "tests",
+    "src",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/components",
+    "test",
+    "tests"
+  ]
+}
