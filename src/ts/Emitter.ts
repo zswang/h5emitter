@@ -1,4 +1,4 @@
-interface Emitter {
+export interface Emitter {
   on(event: string, fn: Function)
   off(event: string, fn: Function)
   once(event: string, fn: Function)

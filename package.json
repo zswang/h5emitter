@@ -1,6 +1,6 @@
 {
   "name": "h5emitter",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "description": "event emitter function",
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
   "files": [
     "README.md",
     "h5emitter.js",
-    "h5emitter.min.js"
+    "h5emitter.min.js",
+    "src/ts/Emitter.ts"
   ]
 }

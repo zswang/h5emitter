@@ -6,7 +6,7 @@
  * event emitter function
  * @author
  *   zswang (http://weibo.com/zswang)
- * @version 0.0.8
+ * @version 0.0.11
  * @date 2017-05-08
  * @license MIT
  */
