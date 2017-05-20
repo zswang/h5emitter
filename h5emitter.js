@@ -1,13 +1,13 @@
 (function (exportName) {
-  /*<function name="createEmitter">*/
+  /*<function name="Emitter">*/
 /**
  * @file h5emitter
  * @url https://github.com/zswang/h5emitter.git
  * event emitter function
  * @author
  *   zswang (http://weibo.com/zswang)
- * @version 0.0.11
- * @date 2017-05-08
+ * @version 1.0.0
+ * @date 2017-05-20
  * @license MIT
  */
 /**
@@ -15,7 +15,7 @@
  '''<example>'''
  * @example base
   ```js
-  var emitter = h5emitter.createEmitter();
+  var emitter = new h5emitter.Emitter();
   emitter.on('click', function (data) {
     console.log('on', data);
   });
@@ -44,17 +44,13 @@
   ```
  '''</example>'''
  */
-function createEmitter() {
-    /**
-     * 事件对象实例
-     *
-     * @type {Object}
-     */
-    var instance;
-    /**
-     * 事件列表
-     */
-    var callbacks = [];
+var Emitter = (function () {
+    function Emitter() {
+        /**
+         * 事件列表
+         */
+        this.callbacks = [];
+    }
     /**
      * 事件绑定
      *
@@ -62,13 +58,13 @@ function createEmitter() {
      * @param fn 回调函数
      * @return 返回事件实例
      */
-    function on(event, fn) {
-        callbacks.push({
+    Emitter.prototype.on = function (event, fn) {
+        this.callbacks.push({
             event: event,
             fn: fn,
         });
-        return instance;
-    }
+        return this;
+    };
     /**
      * 取消事件绑定
      *
@@ -76,12 +72,12 @@ function createEmitter() {
      * @param fn 回调函数
      * @return返回事件实例
      */
-    function off(event, fn) {
-        callbacks = callbacks.filter(function (item) {
+    Emitter.prototype.off = function (event, fn) {
+        this.callbacks = this.callbacks.filter(function (item) {
             return !(item.event === event && item.fn === fn);
         });
-        return instance;
-    }
+        return this;
+    };
     /**
      * 事件绑定，只触发一次
      *
@@ -89,14 +85,14 @@ function createEmitter() {
      * @param fn 回调函数
      * @return 返回事件实例
      */
-    function once(event, fn) {
+    Emitter.prototype.once = function (event, fn) {
         function handler() {
-            off(event, handler);
-            fn.apply(instance, arguments);
+            this.off(event, handler);
+            fn.apply(this, arguments);
         }
-        on(event, handler);
-        return instance;
-    }
+        this.on(event, handler);
+        return this;
+    };
     /**
      * 触发事件
      *
@@ -104,28 +100,23 @@ function createEmitter() {
      * @param fn 回调函数
      * @return 返回事件实例
      */
-    function emit(event) {
+    Emitter.prototype.emit = function (event) {
+        var _this = this;
         var argv = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             argv[_i - 1] = arguments[_i];
         }
-        callbacks.filter(function (item) {
+        this.callbacks.filter(function (item) {
             return item.event === event;
         }).forEach(function (item) {
-            item.fn.apply(instance, argv);
+            item.fn.apply(_this, argv);
         });
-        return instance;
-    }
-    instance = {
-        emit: emit,
-        on: on,
-        off: off,
-        once: once,
+        return this;
     };
-    return instance;
-} /*</function>*/
+    return Emitter;
+}()); /*</function>*/
   var exports = {
-      createEmitter: createEmitter
+      Emitter: Emitter
   };
   /* istanbul ignore next */
   if (typeof define === 'function') {

@@ -1,8 +1,8 @@
 (function (exportName) {
-  /*<jdists encoding="fndep" import="./js/Emitter.js" depend="createEmitter" />*/
+  /*<jdists encoding="fndep" import="./js/Emitter.js" depend="Emitter" />*/
 
   var exports = {
-      createEmitter: createEmitter
+      Emitter: Emitter
   };
 
   /* istanbul ignore next */

@@ -14,7 +14,7 @@ describe("src/ts/Emitter.ts", function () {
 
   it("base", function () {
     examplejs_printLines = [];
-  var emitter = h5emitter.createEmitter();
+  var emitter = new h5emitter.Emitter();
   emitter.on('click', function (data) {
     examplejs_print('on', data);
   });

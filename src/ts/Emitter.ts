@@ -1,16 +1,9 @@
-export interface Emitter {
-  on(event: string, fn: Function)
-  off(event: string, fn: Function)
-  once(event: string, fn: Function)
-  emit(event: string, ...agrv)
-}
-
-interface EventHandler {
+export interface EventHandler {
   event: string
   fn: Function
 }
 
-/*<function name="createEmitter">*/
+/*<function name="Emitter">*/
 /*<jdists encoding="ejs" data="../../package.json">*/
 /**
  * @file <%- name %>
@@ -38,7 +31,7 @@ interface EventHandler {
  '''<example>'''
  * @example base
   ```js
-  var emitter = h5emitter.createEmitter();
+  var emitter = new h5emitter.Emitter();
   emitter.on('click', function (data) {
     console.log('on', data);
   });
@@ -67,18 +60,12 @@ interface EventHandler {
   ```
  '''</example>'''
  */
-function createEmitter(): Emitter {
-  /**
-   * 事件对象实例
-   *
-   * @type {Object}
-   */
-  let instance: Emitter;
+class Emitter {
 
   /**
    * 事件列表
    */
-  let callbacks: EventHandler[] = []
+  private callbacks: EventHandler[] = []
 
   /**
    * 事件绑定
@@ -87,12 +74,12 @@ function createEmitter(): Emitter {
    * @param fn 回调函数
    * @return 返回事件实例
    */
-  function on(event: string, fn: Function): Emitter {
-    callbacks.push({
+  on(event: string, fn: Function): Emitter {
+    this.callbacks.push({
       event: event,
       fn: fn,
     })
-    return instance
+    return this
   }
 
   /**
@@ -102,11 +89,11 @@ function createEmitter(): Emitter {
    * @param fn 回调函数
    * @return返回事件实例
    */
-  function off(event: string, fn: Function): Emitter {
-    callbacks = callbacks.filter((item) => {
+  off(event: string, fn: Function): Emitter {
+    this.callbacks = this.callbacks.filter((item) => {
       return !(item.event === event && item.fn === fn)
     })
-    return instance
+    return this
   }
 
   /**
@@ -116,14 +103,14 @@ function createEmitter(): Emitter {
    * @param fn 回调函数
    * @return 返回事件实例
    */
-  function once(event: string, fn: Function): Emitter {
+  once(event: string, fn: Function): Emitter {
     function handler() {
-      off(event, handler)
-      fn.apply(instance, arguments)
+      this.off(event, handler)
+      fn.apply(this, arguments)
     }
 
-    on(event, handler)
-    return instance
+    this.on(event, handler)
+    return this
   }
 
   /**
@@ -133,25 +120,16 @@ function createEmitter(): Emitter {
    * @param fn 回调函数
    * @return 返回事件实例
    */
-  function emit(event: string, ...argv): Emitter {
-    callbacks.filter((item) => {
+  emit(event: string, ...argv): Emitter {
+    this.callbacks.filter((item) => {
       return item.event === event
-    }).forEach(function (item) {
-      item.fn.apply(instance, argv)
-    });
-    return instance;
+    }).forEach((item) => {
+      item.fn.apply(this, argv)
+    })
+    return this
   }
-
-  instance = {
-    emit: emit,
-    on: on,
-    off: off,
-    once: once,
-  }
-
-  return instance
 } /*</function>*/
 
 export {
-  createEmitter
+  Emitter
 }
