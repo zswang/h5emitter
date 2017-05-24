@@ -1,0 +1,22 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <button>test</button>
+</body>
+<script src="../h5emitter.js"></script>
+<script>
+var emitter = new h5emitter.Emitter();
+emitter.on('click', function (time) {
+  console.log('on click', time);
+});
+emitter.once('click', function (time) {
+  console.log('once click', time);
+});
+
+document.querySelector('button').addEventListener('click', function () {
+  emitter.emit('click', Date.now());
+});
+</script>
+</html>

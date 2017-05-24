@@ -10,15 +10,16 @@ const uglify = require('gulp-uglify')
 const rename = require('gulp-rename')
 const examplejs = require('gulp-examplejs')
 
-gulp.task('build', function () {
+gulp.task('build', function (done) {
   gulp.src('./src/ts/*.ts')
     .pipe(typescript({
       target: 'ES5'
     }))
     .pipe(gulp.dest('./src/js'))
+    .on('end', done)
 })
 
-gulp.task('jdists', function () {
+gulp.task('jdists', ['build'], function () {
   gulp.src('./src/h5emitter.jdists.js')
     .pipe(jdists())
     .pipe(rename('h5emitter.js'))
