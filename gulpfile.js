@@ -48,4 +48,4 @@ global.h5emitter = require('../h5emitter.js');
     .pipe(gulp.dest('test'))
 })
 
-gulp.task('dist', ['build', 'jdists', 'uglify'])
+gulp.task('dist', ['jdists', 'uglify'])

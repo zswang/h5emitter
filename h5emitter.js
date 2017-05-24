@@ -7,7 +7,7 @@
  * @author
  *   zswang (http://weibo.com/zswang)
  * @version 1.0.0
- * @date 2017-05-23
+ * @date 2017-05-24
  * @license MIT
  */
 /**
