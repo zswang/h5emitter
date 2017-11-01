@@ -1,11 +1,12 @@
 {
   "name": "h5emitter",
+  "version": "3.0.0",
   "description": "event emitter function",
   "keywords": [
     "event",
     "emitter"
   ],
-  "version": "0.0.14",
+  "main": "lib/h5emitter.js",
   "author": {
     "name": "zswang",
     "url": "http://weibo.com/zswang"

@@ -1,6 +1,6 @@
 {
   "name": "h5emitter",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "event emitter function",
   "repository": {
     "type": "git",
@@ -8,11 +8,11 @@
   },
   "scripts": {
     "_update_version": "node version.js",
-    "_dist": "gulp dist example && npm run test",
-    "dist": "npm run _update_version && npm run _dist",
-    "mocha": "mocha",
+    "_dist": "gulp dist",
     "test": "istanbul cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec",
-    "lint": "jshint h5emitter.js"
+    "example": "gulp example",
+    "mocha": "mocha",
+    "dist": "npm run _update_version && npm run example && npm run _dist && npm run test"
   },
   "keywords": [
     "event",
@@ -27,29 +27,29 @@
     "name": "zswang",
     "url": "http://weibo.com/zswang"
   },
-  "main": "h5emitter.js",
+  "main": "lib/h5emitter",
+  "typings": "lib/h5emitter.d.ts",
   "dependencies": {
     "colors": "^1.0.3",
     "mkdirp": "^0.5.0",
     "commander": "^2.9.0"
   },
   "devDependencies": {
+    "@types/node": "^8.0.33",
     "gulp": "^3.9.1",
     "gulp-examplejs": "0.0.9",
-    "gulp-jdists": "^2.0.0",
+    "gulp-jdists": "^2.0.17",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
     "gulp-typescript": "^3.1.6",
     "gulp-uglify": "^2.1.2",
-    "typescript": "^2.0.3",
-    "istanbul": "^0.4.5",
-    "jshint": "^2.9.4",
-    "mocha": "^3.2.0",
-    "should": "^11.2.1"
+    "istanbul": "^0.3.17",
+    "merge2": "^1.1.0",
+    "mocha": "^2.0.1",
+    "should": "^4.1.0",
+    "typescript": "^2.0.3"
   },
   "files": [
-    "README.md",
-    "h5emitter.js",
-    "h5emitter.min.js",
-    "src/ts/Emitter.ts"
+    "lib"
   ]
 }

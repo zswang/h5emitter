@@ -5,18 +5,24 @@ h5emitter
 
 emitter event function.
 
-## 使用方法
+## Install 安装
 
-### 绑定和触发事件
+```sh
+$ npm install --save h5emitter
+```
+
+## Usage 使用方法
+
+### 绑定和触发事件 bind and trigger events
 
 ```js
-var emitter = new h5emitter.createEmitter();
+var emitter = new h5emitter.Emitter()
 
 emitter.on('update', function (value) {
-  console.log(value);
-});
+  console.log(value)
+})
 
-emitter.emit('update', 'hello');
+emitter.emit('update', 'hello')
 ```
 
 ## License

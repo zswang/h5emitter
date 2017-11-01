@@ -1,8 +1,8 @@
 
-global.h5emitter = require('../h5emitter.js');
+global.h5emitter = require('../');
       
 
-describe("src/ts/Emitter.ts", function () {
+describe("src/h5emitter.ts", function () {
   var assert = require('should');
   var util = require('util');
   var examplejs_printLines;

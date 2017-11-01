@@ -1,10 +1,15 @@
-export interface EventHandler {
+/*<function name="IEventHandler">*/
+interface IEventHandler {
   event: string
   fn: Function
+} /*</function>*/
+
+export {
+  IEventHandler
 }
 
-/*<function name="Emitter">*/
-/*<jdists encoding="ejs" data="../../package.json">*/
+/*<function name="Emitter" depend="IEventHandler">*/
+/*<jdists encoding="ejs" data="../package.json">*/
 /**
  * @file <%- name %>
  <% if (typeof repository != 'undefined') { %>
@@ -65,7 +70,7 @@ class Emitter {
   /**
    * 事件列表
    */
-  private callbacks: EventHandler[] = []
+  private callbacks: IEventHandler[] = []
 
   /**
    * 事件绑定
